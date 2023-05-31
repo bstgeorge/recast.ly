@@ -1,11 +1,25 @@
 import VideoListEntry from './VideoListEntry.js';
 
-var VideoList = ({ listOfVideo }) => {
-  var listEntryArray = [];
+const { useEffect, useState } = React;
 
-  for (var i = 0; i < listOfVideo.length; i++) {
-    listEntryArray.push(<VideoListEntry videoEntry={ listOfVideo[i] } />);
-  }
+var VideoList = ({ listOfVideo, setCurrentVideo }) => {
+  const [listEntryArray, setListEntryArray] = useState([]);
+
+  // useEffect(() => {
+  //   listEntryArray = listOfVideo.map((elements, i) => {
+  //     return
+  //   });
+  // }, [listOfVideo]);
+
+  useEffect(() => {
+    var updatedListEntryArray = [];
+
+    for (var i = 0; i < listOfVideo.length; i++) {
+      updatedListEntryArray.push(<VideoListEntry videoEntry={ listOfVideo[i] } setCurrentVideo={ setCurrentVideo } />);
+    }
+
+    setListEntryArray(updatedListEntryArray);
+  }, [listOfVideo]);
 
   return (
     <div className="video-list">
@@ -17,7 +31,7 @@ var VideoList = ({ listOfVideo }) => {
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
 VideoList.propTypes = {
-  videos: PropTypes.array.isRequired,
+  listOfVideo: PropTypes.array.isRequired,
 };
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope.
