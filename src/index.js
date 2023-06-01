@@ -2,7 +2,6 @@
 import App from './src/components/App.js';
 
 // render React
-console.log('test');
 ReactDOM.render(
   <App />,
   document.getElementById('app')

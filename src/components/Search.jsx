@@ -1,32 +1,31 @@
 import exampleVideoData from '../data/exampleVideoData.js';
+import searchYouTube from '../lib/searchYoutube.js';
 
-const { useState } = React;
+const { useState, useEffect } = React;
 
-// var SubmitButton = () => {
-//   return (
-//     <button className="btn hidden-sm-down">
-//       <span className="glyphicon glyphicon-search"></span>
-//     </button>
-//   );
-// };
-
-var Search = ({ setListOfVideo }) => {
+var Search = ({ setVideos }) => {
   const [value, setValue] = useState('');
+
+  useEffect(() => {
+    searchYouTube(value, (data) => {
+      setVideos(data);
+    });
+  }, [value]);
 
   return (
     <div className="search-bar form-inline">
       <input className="form-control"
         type="text"
-        value = {value}
         onChange={(e) => setValue(e.target.value)}
       />
       <button className="btn hidden-sm-down"
         onClick={(evt) => {
           evt.preventDefault();
-          console.log('button test');
           // perform api call with input value
-          // set video list
-          setListOfVideo(exampleVideoData);
+          searchYouTube(value, (data) => {
+            console.log(data);
+            setVideos(data);
+          });
         }}
       >
         <span className="glyphicon glyphicon-search"></span>

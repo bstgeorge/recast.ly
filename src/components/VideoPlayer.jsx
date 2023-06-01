@@ -1,11 +1,11 @@
-var VideoPlayer = ({ currentVideo }) => (
+var VideoPlayer = ({ video }) => (
   <div className="video-player">
     <div className="embed-responsive embed-responsive-16by9">
-      <iframe className="embed-responsive-item" src={`https://www.youtube.com/embed/${currentVideo.id.videoId}?autoplay=1`} allowFullScreen></iframe>
+      <iframe className="embed-responsive-item" src={`https://www.youtube.com/embed/${video.id.videoId}`} allowFullScreen></iframe>
     </div>
     <div className="video-player-details">
-      <h3>{currentVideo.snippet.title}</h3>
-      <div>{currentVideo.snippet.description}</div>
+      <h3>{video.snippet.title}</h3>
+      <div>{video.snippet.description}</div>
     </div>
   </div>
 );
@@ -13,7 +13,7 @@ var VideoPlayer = ({ currentVideo }) => (
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
 VideoPlayer.propTypes = {
-  currentVideo: PropTypes.object,
+  video: PropTypes.object,
 };
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope

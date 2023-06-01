@@ -15,6 +15,7 @@ describe('VideoList', function() {
     var shallowRenderer = new ReactShallowRenderer();
 
     var oneFakeVideo = window.fakeVideoData.slice(-1);
+    // console.log(`oneFakeVideo: ${JSON.stringify(oneFakeVideo, null, 2)}`);
     shallowRenderer.render(
       <VideoList videos={oneFakeVideo} />
     );

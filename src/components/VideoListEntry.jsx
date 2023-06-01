@@ -1,15 +1,15 @@
-var VideoListEntry = ({ videoEntry, setCurrentVideo }) => (
+var VideoListEntry = ({ video, setVideo }) => (
   <div className="video-list-entry media">
     <div className="media-left media-middle">
       <img className="media-object"
-        src= {videoEntry.snippet.thumbnails.default.url}
+        src= {video.snippet.thumbnails.default.url}
         alt=""
-        onClick={(evt) => setCurrentVideo(videoEntry)}
+        onClick={(evt) => setVideo(video)}
       />
     </div>
     <div className="media-body">
-      <div className="video-list-entry-title" onClick={(evt) => setCurrentVideo(videoEntry) }>Video Title</div>
-      <div className="video-list-entry-detail">Video Description</div>
+      <div className="video-list-entry-title" onClick={(evt) => setVideo(video) }>{ video.snippet.title }</div>
+      <div className="video-list-entry-detail">{ video.snippet.description }</div>
     </div>
   </div>
 );
@@ -17,7 +17,7 @@ var VideoListEntry = ({ videoEntry, setCurrentVideo }) => (
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
 VideoListEntry.propTypes = {
-  videoEntry: PropTypes.object.isRequired,
+  video: PropTypes.object.isRequired,
 };
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
