@@ -6,11 +6,20 @@ const { useState, useEffect } = React;
 var Search = ({ setVideos }) => {
   const [value, setValue] = useState('');
 
-  useEffect(() => {
+  var searchEvery500 = _.debounce(() => {
     searchYouTube(value, (data) => {
       setVideos(data);
     });
+  }, 500);
+
+  useEffect(() => {
+    searchEvery500();
+
+    return () => {
+      searchEvery500.cancel();
+    };
   }, [value]);
+
 
   return (
     <div className="search-bar form-inline">

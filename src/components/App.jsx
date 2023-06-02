@@ -14,13 +14,14 @@ var App = () => {
 
   useEffect(() => {
     searchYouTube('', (data) => {
-      console.log(data[0]);
+      console.log(`asdfasfasf: ${data[0]}`);
       setVideos(data);
       setVideo(data[0]);
     });
   }, []);
 
-  if (videos.length === 0) { return (<div></div>); }
+  // console.log(video);
+  if (Object.keys(video).length === 0) { return (<div></div>); }
 
   return (
     <div>
